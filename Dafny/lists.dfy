@@ -11,6 +11,21 @@ function Length<T>(l: List<T>) : nat
   }
 }
 
+method ComputeLength<T>(l:List<T>) returns (n:nat)
+  ensures n == Length(l)
+{
+  n := 0;
+  var t := l;
+  while t != Nil
+    invariant n + Length(t) == Length(l)
+    decreases t
+  {
+    n := n + 1;
+    t := t.tail;
+  }
+}
+
+
 function Append<T>(l1: List<T>, l2: List<T>) : List<T>
   ensures Length(Append(l1, l2)) == Length(l1) + Length(l2)
   decreases l1
@@ -31,11 +46,29 @@ function Reverse<T>(l: List<T>) : List<T>
   }
 }
 
+
 function min(a: nat, b: nat) : nat
   ensures min(a, b) == a ==> a <= b
   ensures min(a, b) == b ==> b <= a
 {
   if a <= b then a else b
+}
+
+method computeMinArray(l: array<nat>) returns (m:nat)
+  requires l.Length > 0
+  ensures forall i :: 0 <= i < l.Length ==> m <= l[i]
+  decreases l
+{
+  m := l[0];
+  var i := 1;
+  while i < l.Length
+    invariant 0 <= i <= l.Length
+    invariant forall j :: 0 <= j < i ==> m <= l[j]
+    decreases l.Length - i
+  {
+    m := min(m, l[i]);
+    i := i + 1;
+  }
 }
 
 function Zip<T1, T2>(l1: List<T1>, l2: List<T2>) : List<(T1, T2)>
