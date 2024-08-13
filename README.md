@@ -1,3 +1,7 @@
 # Dafny and Coq Code Examples
 
-Welcome to the Dafny and Coq Code Examples repository! This repository contains various examples and exercises demonstrating the use of Dafny and Coq for formal verification and theorem proving.
+The purpose of this repository is to provide some examples of formal verification tools.
+
+This repository has examples of 2 tools:
+- **Dafny**: An automated verification tool that checks the correctness of programs through specifications written directly in the code.
+- **Coq**: An interactive theorem prover used for writing and verifying mathematical proofs and functional programs.

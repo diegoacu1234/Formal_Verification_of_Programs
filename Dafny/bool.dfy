@@ -1,4 +1,3 @@
-
 function not(b: bool) : bool
   ensures not(b) == true <==> b == false
   ensures not(b) == false <==> b == true
@@ -6,14 +5,14 @@ function not(b: bool) : bool
   if b then false else true
 }
 
-function isEvenRecursive(n:nat) :bool
-  ensures isEvenRecursive(n) == true <==> n % 2 == 0
-  ensures isEvenRecursive(n) == false <==> n % 2 != 0
+function IsEvenRecursive(n:nat) :bool
+  ensures IsEvenRecursive(n) == true <==> n % 2 == 0
+  ensures IsEvenRecursive(n) == false <==> n % 2 != 0
 {
   match n
   {
     case 0 => true
-    case _ => not(isEvenRecursive(n-1))
+    case _ => not(IsEvenRecursive(n-1))
   }
 }
 
